@@ -1,15 +1,19 @@
-let colors = generateRandomColorsArray(6);
+let numSquares = 6;
+let colors = generateRandomColorsArray(numSquares);
 let squares = document.querySelectorAll('.square');
 let pickedColor = pickColor();
 let colorDisplay = document.getElementById('color-display');
 let messageDisplay = document.querySelector('#message');
 let title = document.querySelector('h1');
 let resetButton = document.querySelector('#reset');
+let easyButton = document.querySelector('#easy');
+let hardButton = document.querySelector('#hard');
+
 
 colorDisplay.textContent = pickedColor;
 
 resetButton.addEventListener('click', function () {
-    colors = generateRandomColorsArray(6);
+    colors = generateRandomColorsArray(numSquares);
     pickedColor = pickColor();
     colorDisplay.textContent = pickedColor;
     for (let i = 0; i < colors.length; i++) {
@@ -18,6 +22,38 @@ resetButton.addEventListener('click', function () {
     }
     title.style.backgroundColor = '#232323'
 })
+
+easyButton.addEventListener('click', function () {
+    hardButton.classList.toggle('selected');
+    easyButton.classList.toggle('selected');
+    numSquares = 3;
+    colors = generateRandomColorsArray(numSquares);
+    pickedColor = pickColor();
+    colorDisplay.textContent = pickedColor;
+    for (let i = 0; i < squares.length; i++) {
+        if (colors[i]) {
+            squares[i].style.backgroundColor = colors[i];
+        } else {
+            squares[i].style.display = 'none'
+        }
+    }
+    title.style.backgroundColor = '#232323'
+})
+
+hardButton.addEventListener('click', function () {
+    hardButton.classList.toggle('selected');
+    easyButton.classList.toggle('selected');
+    numSquares = 6;
+    colors = generateRandomColorsArray(numSquares);
+    pickedColor = pickColor();
+    colorDisplay.textContent = pickedColor;
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].style.backgroundColor = colors[i];
+        squares[i].style.display = 'block'
+    }
+    title.style.backgroundColor = '#232323'
+})
+
 
 for (let i = 0; i < colors.length; i++) {
     //add initial colors to squares
@@ -37,7 +73,6 @@ for (let i = 0; i < colors.length; i++) {
             this.style.backgroundColor = '#232323';
             messageDisplay.textContent = 'Try Again'
         }
-        console.log(pickedColor, clickedColor)
     });
 }
 
