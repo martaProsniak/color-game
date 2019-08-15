@@ -6,55 +6,25 @@ let colorDisplay = document.getElementById('color-display');
 let messageDisplay = document.querySelector('#message');
 let title = document.querySelector('h1');
 let resetButton = document.querySelector('#reset');
-let easyButton = document.querySelector('#easy');
-let hardButton = document.querySelector('#hard');
-
+let modeButtons= document.querySelectorAll('.mode');
 
 colorDisplay.textContent = pickedColor;
 
+// *** ADDING EVENT LISTENERS ****
+
+for(let i = 0; i < modeButtons.length; i++){
+    modeButtons[i].addEventListener('click', function(){
+        modeButtons[0].classList.remove('selected');
+        modeButtons[1].classList.remove('selected');
+        this.classList.add('selected');
+        this.textContent === 'Easy' ? numSquares = 3: numSquares = 6;
+        reset();
+    });
+}
+
 resetButton.addEventListener('click', function () {
-    colors = generateRandomColorsArray(numSquares);
-    pickedColor = pickColor();
-    colorDisplay.textContent = pickedColor;
-    for (let i = 0; i < colors.length; i++) {
-        //add initial colors to squares
-        squares[i].style.backgroundColor = colors[i];
-    }
-    title.style.backgroundColor = '#232323'
-    messageDisplay.textContent = ''
-})
-
-easyButton.addEventListener('click', function () {
-    hardButton.classList.toggle('selected');
-    easyButton.classList.toggle('selected');
-    numSquares = 3;
-    colors = generateRandomColorsArray(numSquares);
-    pickedColor = pickColor();
-    colorDisplay.textContent = pickedColor;
-    for (let i = 0; i < squares.length; i++) {
-        if (colors[i]) {
-            squares[i].style.backgroundColor = colors[i];
-        } else {
-            squares[i].style.display = 'none'
-        }
-    }
-    title.style.backgroundColor = '#232323'
-})
-
-hardButton.addEventListener('click', function () {
-    hardButton.classList.toggle('selected');
-    easyButton.classList.toggle('selected');
-    numSquares = 6;
-    colors = generateRandomColorsArray(numSquares);
-    pickedColor = pickColor();
-    colorDisplay.textContent = pickedColor;
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].style.backgroundColor = colors[i];
-        squares[i].style.display = 'block'
-    }
-    title.style.backgroundColor = '#232323'
-})
-
+    reset();
+ })
 
 for (let i = 0; i < colors.length; i++) {
     //add initial colors to squares
@@ -76,6 +46,8 @@ for (let i = 0; i < colors.length; i++) {
         }
     });
 }
+
+// **** FUNCTIONS ***
 
 function changeAllSquaresColorAfterWin(color) {
     for (let i = 0; i < squares.length; i++) {
@@ -107,4 +79,27 @@ function generateRandomColor() {
     // pick a 'blue' from 0 - 255
     let b = Math.floor(Math.random() * 256);
     return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+}
+
+function reset(){
+    // generate new colors array depend on the mode
+    colors = generateRandomColorsArray(numSquares);
+    // pick new color to guess
+    pickedColor = pickColor();
+
+    colorDisplay.textContent = pickedColor;
+    resetButton.textContent = 'New Colors'
+    messageDisplay.textContent = ''
+    title.style.backgroundColor = 'steelblue'
+
+    // change color of all squares
+    for (let i = 0; i < squares.length; i++) {
+        if(colors[i]){
+            squares[i].style.display = 'block';
+            //add initial colors to squares
+            squares[i].style.backgroundColor = colors[i];
+        } else {
+            squares[i].style.display = 'none';
+        }
+    }
 }
