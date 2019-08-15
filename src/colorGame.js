@@ -21,6 +21,7 @@ resetButton.addEventListener('click', function () {
         squares[i].style.backgroundColor = colors[i];
     }
     title.style.backgroundColor = '#232323'
+    messageDisplay.textContent = ''
 })
 
 easyButton.addEventListener('click', function () {
