@@ -3,9 +3,21 @@ let squares = document.querySelectorAll('.square');
 let pickedColor = pickColor();
 let colorDisplay = document.getElementById('color-display');
 let messageDisplay = document.querySelector('#message');
-let menu = document.querySelector('h1');
+let title = document.querySelector('h1');
+let resetButton = document.querySelector('#reset');
 
 colorDisplay.textContent = pickedColor;
+
+resetButton.addEventListener('click', function () {
+    colors = generateRandomColorsArray(6);
+    pickedColor = pickColor();
+    colorDisplay.textContent = pickedColor;
+    for (let i = 0; i < colors.length; i++) {
+        //add initial colors to squares
+        squares[i].style.backgroundColor = colors[i];
+    }
+    title.style.backgroundColor = '#232323'
+})
 
 for (let i = 0; i < colors.length; i++) {
     //add initial colors to squares
@@ -19,10 +31,11 @@ for (let i = 0; i < colors.length; i++) {
         if (clickedColor === pickedColor) {
             messageDisplay.textContent = 'Correct!'
             changeAllSquaresColorAfterWin(clickedColor);
-            menu.style.backgroundColor = clickedColor;
+            title.style.backgroundColor = clickedColor;
+            resetButton.textContent = 'Play Again'
         } else {
             this.style.backgroundColor = '#232323';
-            messageDisplay.textContent = 'Try again!'
+            messageDisplay.textContent = 'Try Again'
         }
         console.log(pickedColor, clickedColor)
     });
@@ -40,17 +53,17 @@ function pickColor() {
     return colors[random];
 }
 
-function generateRandomColorsArray(num){
+function generateRandomColorsArray(num) {
     let colorsArray = [];
 
-    for (let i = 0; i < num; i++){
+    for (let i = 0; i < num; i++) {
         // get random color and push into array
         colorsArray.push(generateRandomColor());
     }
     return colorsArray;
 }
 
-function generateRandomColor(){
+function generateRandomColor() {
     // pick a 'red' from 0 - 255
     let r = Math.floor(Math.random() * 256);
     // pick a 'green' from 0 - 255
