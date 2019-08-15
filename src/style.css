@@ -1,7 +1,7 @@
 body{
     background-color: #232323;
     margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'McLaren', cursive;
 }
 
 #container{
@@ -23,6 +23,7 @@ body{
 
 .square:hover{
     cursor: pointer;
+    filter: brightness(120%);
 }
 
 h1{
@@ -60,6 +61,7 @@ button{
     border: none;
     background: none;
     text-transform: uppercase;
+    font-family: 'McLaren', cursive;
     height: 100%;
     font-weight: 700;
     color: steelblue;
