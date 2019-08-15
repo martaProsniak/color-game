@@ -21,6 +21,10 @@ body{
     --moz-transition: background 0.6s;
 }
 
+.square:hover{
+    cursor: pointer;
+}
+
 h1{
     text-align: center;
     line-height: 1.1;
@@ -69,6 +73,7 @@ button{
 button:hover{
     background-color: steelblue;
     color: white;
+    cursor: pointer;
 }
 
 #message{
