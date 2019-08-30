@@ -59,7 +59,7 @@ h1{
 
 @media(max-width: 425px){
     #stripe{
-        font-size: 13px;
+        font-size: 12px;
     }
     h1{
         font-size: 26px;
