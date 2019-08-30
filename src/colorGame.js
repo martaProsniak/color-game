@@ -95,7 +95,7 @@ function reset() {
     colorDisplay.textContent = pickedColor;
     resetButton.textContent = 'New Colors'
     messageDisplay.textContent = ''
-    title.style.backgroundColor = 'steelblue'
+    title.style.backgroundColor = '#5146b4'
 
     // change color of all squares
     for (let i = 0; i < squares.length; i++) {
