@@ -42,8 +42,8 @@ function setUpSquares(){
             //compare color to the picked color
             if (clickedColor === pickedColor) {
                 messageDisplay.textContent = 'Correct!'
-                changeAllSquaresColorAfterWin(clickedColor);
-                title.style.backgroundColor = clickedColor;
+                changeAllSquaresColorAfterWin(pickedColor);
+                title.style.backgroundColor = pickedColor;
                 resetButton.textContent = 'Play Again'
             } else {
                 this.style.backgroundColor = '#232323';
@@ -83,7 +83,7 @@ function generateRandomColor() {
     let g = Math.floor(Math.random() * 256);
     // pick a 'blue' from 0 - 255
     let b = Math.floor(Math.random() * 256);
-    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
 function reset() {
